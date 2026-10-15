@@ -1,0 +1,35 @@
+name: Build GeoChem EXE
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Packages
+        run: |
+          pip install -r requirements.txt
+
+      - name: Build EXE
+        run: |
+          pyinstaller --onefile run_geochem.py
+
+      - name: Upload Executable
+        uses: actions/upload-artifact@v4
+        with:
+          name: GeoChem-EXE
+          path: dist/*.exe
