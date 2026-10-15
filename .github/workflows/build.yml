@@ -26,7 +26,7 @@ jobs:
 
       - name: Build EXE
         run: |
-          pyinstaller --onefile run_geochem.py
+          pyinstaller --onefile --collect-all streamlit run_geochem.py
 
       - name: Upload Executable
         uses: actions/upload-artifact@v4
