@@ -1,5 +1,7 @@
 # GeoChem-Analytics
 
+![Tests](https://github.com/tembokennedy5-dot/GeoChem-Analytics/actions/workflows/tests.yml/badge.svg)
+
 **An interactive Streamlit toolkit for exploration geochemistry and compositional data analysis (CoDa).**
 
 Multi-element assay data is compositional: the values are parts of a whole, so raw correlations and PCA can show patterns that come from the constant sum rather than from geology. GeoChem-Analytics applies log-ratio transforms first, then finds multivariate anomalies and element associations and maps them in space, so you can separate real mineralisation signals from closure artefacts.
@@ -32,6 +34,15 @@ The app opens at `http://localhost:8501` with a built-in **synthetic demo datase
 
 You can also open the repo in **GitHub Codespaces**. The dev container installs everything and launches the app automatically.
 
+## Tests
+
+```bash
+pip install pytest
+pytest -q
+```
+
+The 12 unit tests check the core maths (CLR rows sum to zero, ILR preserves Aitchison distance, below-detection handling, varimax orthogonality, MDS distance recovery). They also include a smoke test that renders the full app. A GitHub Actions workflow runs them on every push.
+
 ## Windows executable
 
 A GitHub Actions workflow (`.github/workflows/build.yml`) builds a standalone `.exe` with PyInstaller on every push to `main`. You can download it from the **Actions** tab under the *GeoChem-EXE* artifact.
@@ -48,4 +59,4 @@ Python · Streamlit · pandas · NumPy · scikit-learn · SciPy · Plotly · Mat
 
 ## Author
 
-**Kennedy Tembo**, MSc Data Science & Exploration Geology
+**Tembo Kennedy**, MSc Data Science & Exploration Geology
