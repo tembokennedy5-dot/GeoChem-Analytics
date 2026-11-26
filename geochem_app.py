@@ -45,6 +45,8 @@ def make_demo(n=180, seed=42):
     df["x_km"] = x
     df["y_km"] = y
     df["SampleID"] = [f"S{i:03d}" for i in range(n)]
+    # Text columns needed to hold below-detection strings (pandas 3 rejects str in float columns)
+    df[["Cu", "Au"]] = df[["Cu", "Au"]].astype(object)
     df.loc[5, "Cu"] = "<0.5"
     df.loc[9, "Au"] = "<0.01"
     return df[["SampleID", "x_km", "y_km"] + cols]
